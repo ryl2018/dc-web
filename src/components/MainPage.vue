@@ -1,9 +1,8 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%">
     <el-header>
       <el-menu
         :default-active="activeIndex"
-        class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
         background-color="#409EFF"
@@ -44,63 +43,72 @@
         </el-menu>
       </el-aside>
       <el-main>
-          
+        <menu-page></menu-page>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      activeIndex: "1",
-      dcShow: true
-    };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      if (key === "1") {
-        this.dcShow = true;
-      } else {
-        this.dcShow = false;
+  import MenuPage from './MenuPage'
+  export default {
+    components: {
+      MenuPage
+    },
+    data() {
+      return {
+        activeIndex: "1",
+        dcShow: true
+      };
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        if (key === "1") {
+          this.dcShow = true;
+        } else {
+          this.dcShow = false;
+        }
+        console.log(key, keyPath);
       }
-      console.log(key, keyPath);
     }
-  }
-};
+  };
 </script>
 <style>
-.el-header {
-  background-color: #409eff;
-  color: #333;
-  text-align: center;
-  /* line-height: 60px; */
-}
+  .el-header {
+    background-color: #409eff;
+    color: #333;
+    text-align: center;
+    /* line-height: 60px; */
+  }
 
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
+  .el-aside {
+    /*background-color: #d3dce6;*/
+    color: #333;
+    text-align: center;
+    height: 100%;
+    /*display: block;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 70px;*/
+    /*bottom: 0;*/
+    /*overflow-y: scroll;*/
+  }
+  .el-main {
+    background-color: #e9eef3;
+    color: #333;
+    text-align: center;
+    height: 100%;
+  }
 
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
+  body > .el-container {
+    margin-bottom: 40px;
+  }
 
-body > .el-container {
-  margin-bottom: 40px;
-}
+  /*.el-container:nth-child(5) .el-aside,*/
+  /*.el-container:nth-child(6) .el-aside {*/
+  /*  line-height: 260px;*/
+  /*}*/
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
-}
+  /*.el-container:nth-child(7) .el-aside {*/
+  /*  line-height: 320px;*/
+  /*}*/
 </style>
