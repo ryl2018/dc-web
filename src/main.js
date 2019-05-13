@@ -8,7 +8,6 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/icons'
 import store from './store'
-import $ from 'jquery'
 Vue.use(ElementUI)
 Vue.use(router);
 new Vue({

@@ -4,15 +4,15 @@ import {getToken, setToken, removeToken} from '@/utils/auth'
 const user = {
   state: {
     token: getToken(),
-    name: ''
+    phone: '未登陆'
   },
 
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, name) => {
-      state.name = name
+    SET_PHONE: (state, phone) => {
+      state.phone = phone
     },
   },
 
@@ -21,9 +21,10 @@ const user = {
     Register({commit}, userInfo) {
       return new Promise((resolve, reject) => {
         register(userInfo.phone, userInfo.password).then(response => {
-          const data = response
+          const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)
+          commit('SET_PHONE', data.phone)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -35,10 +36,11 @@ const user = {
       const username = userInfo.phone.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          const data = response
+          const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)
-          resolve(data)
+          commit('SET_PHONE', data.phone)
+          resolve(response)
         }).catch(error => {
           reject(error)
         })
@@ -57,10 +59,11 @@ const user = {
     // 登出
     LogOut({commit, state}) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        logout().then((resp) => {
           commit('SET_TOKEN', '')
+          commit('SET_PHONE', '未登陆')
           removeToken()
-          resolve()
+          resolve(resp)
         }).catch(error => {
           reject(error)
         })
@@ -71,6 +74,7 @@ const user = {
     FedLogOut({commit}) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
+        commit('SET_PHONE', '未登陆')
         removeToken()
         resolve()
       })

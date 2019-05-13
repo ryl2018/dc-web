@@ -23,7 +23,7 @@ export function login(phone, password) {
 export function logout() {
   return request({
     url: '/user/logout',
-    method: 'post'
+    method: 'get'
   })
 }
 export function isExistByUserPhone(phone) {

@@ -30,7 +30,7 @@
     </el-form>
     <div class="hold-space-div"></div>
     <el-dialog title="找回密码" :modal="false" width="40%"
-               center :visible.sync="dialogFormVisible">
+               :center="true" :visible.sync="dialogFormVisible">
       <el-form :rules="restUserRules" :model="restUser" ref="restBeginForm">
         <el-form-item label="登陆手机号" :label-width="formLabelWidth" prop="phone">
           <el-input style="width: 84%" v-model="restUser.phone"></el-input>
@@ -47,7 +47,7 @@
         <el-col class="line" :span="2"></el-col>
       </el-form>
       <div slot="footer" class="dialog-footer" style="margin-top: 20px;">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="dialogFormVisible = false" style="margin-left: -100px">取 消</el-button>
         <el-button type="primary" @click="setPass">确 定</el-button>
       </div>
       <!--      内层修改-->
